@@ -1,0 +1,357 @@
+:root {
+  --colorh: #bad4d7;
+  --colorhd: #9fb5b9;
+  --colord: #85979a;
+  --colorb: #d4f2f6;
+  --colorlogo: #353c3d;
+  --grey: #808080; /*Border Color*/
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+body {
+  background-color: var(--colorb);
+  font-family: 'Montserrat', monospace;
+}
+
+#body {
+  background-image: linear-gradient(45deg, var(--colorb), var(--colorh), var(--colorhd), var(--colord));
+  font-family: 'Montserrat', monospace;
+}
+
+button:hover {
+  cursor: pointer;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+main,
+p,
+h1,
+h2 {
+  margin: 0;
+  padding: 0;
+}
+
+#logo {
+  display: flex;
+  font-size: 30px;
+  color: var(--colorlogo);
+  margin: 20px 0px 20px 45%;
+  text-shadow: 1px 1px 1px var(--colorlogo);
+}
+
+#search-logo {
+  height: 100%;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+#search-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+#search-input {
+  padding: 5px;
+  width: 10vw;
+  border: 1px solid var(--grey);
+  border-radius: 10px;
+}
+
+#row-wrapper {
+  display: grid;
+  grid-template-columns: 20% auto 100px 10% 3%;
+  gap: 10px;
+  left: auto;
+  right: auto;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+#grid-template input,
+button {
+  border-color: var(--grey);
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+#file-selector {
+  height: 100px;
+  background-color: white;
+  background-position: center;
+  background-size: cover;
+  margin-bottom: 10px;
+}
+
+#delete-self-row {
+  background-color: var(--colorh);
+}
+
+#new-row-div {
+  display: flex;
+  width: 100%;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+}
+#new-row,
+#delete-row,
+#save-button {
+  height: 100%;
+  width: 100px;
+  border-radius: 10px;
+}
+#new-row {
+  background-color: var(--colorh);
+  margin-right: 10px;
+}
+
+#delete-row {
+  background-color: var(--colorhd);
+  margin-right: 10px;
+}
+
+#save-button {
+  background-color: var(--colord);
+}
+
+#attribut-text {
+  text-align: center;
+  font-style: italic;
+  color: black;
+  margin-top: 15px;
+}
+
+/* list.html animations */
+#box-area {
+  position: fixed;
+  bottom: 0%;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 90%;
+  overflow: hidden;
+  z-index: -1;
+}
+
+#box-area img {
+  position: absolute;
+  animation: animate 20s linear infinite;
+  bottom: -150px;
+}
+#box-area img:nth-child(1) {
+  left: 85%;
+  width: 50px;
+  height: 50px;
+  animation-delay: 0s;
+}
+#box-area img:nth-child(2) {
+  left: 12%;
+  width: 30px;
+  height: 30px;
+  animation-delay: 6s;
+  animation-duration: 12s;
+}
+#box-area img:nth-child(3) {
+  left: 63%;
+  width: 100px;
+  height: 100px;
+  animation-delay: 5.5s;
+}
+#box-area img:nth-child(4) {
+  left: 42%;
+  width: 90px;
+  height: 90px;
+  animation-delay: 0s;
+  animation-duration: 12s;
+}
+#box-area img:nth-child(5) {
+  left: 65%;
+  width: 40px;
+  height: 40px;
+  animation-delay: 0s;
+}
+#box-area img:nth-child(6) {
+  left: 2%;
+  width: 100px;
+  height: 100px;
+  animation-delay: 4s;
+  animation-duration: 10s;
+}
+#box-area img:nth-child(7) {
+  left: 30%;
+  width: 80px;
+  height: 80px;
+  animation-delay: 7s;
+}
+#box-area img:nth-child(8) {
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  animation-delay: 3s;
+  animation-duration: 13s;
+}
+#box-area img:nth-child(9) {
+  left: 76%;
+  width: 40px;
+  height: 40px;
+  animation-delay: 3s;
+}
+#box-area img:nth-child(10) {
+  left: 90%;
+  width: 90px;
+  height: 90px;
+  animation-duration: 10s;
+}
+#box-area img:nth-child(11) {
+  left: 20%;
+  width: 50px;
+  height: 50px;
+  animation-delay: 2s;
+}
+
+@keyframes animate {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-800px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Index.html */
+
+#infos {
+  text-align: center;
+}
+#infos h1 {
+  color: var(--colorlogo);
+  font-size: 60px;
+  margin: 0px 0px 15px 0px;
+  text-shadow: 2px 2px 2px var(--colorlogo);
+}
+
+#infos h2 {
+  color: var(--colord);
+  font-size: 20px;
+}
+
+#infos a {
+  color: var(--colord);
+  font-size: 16px;
+  font-style: italic;
+  text-decoration: none;
+}
+
+#login-wrapper {
+  display: flex;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#login {
+  background-color: white;
+  width: 300px;
+  height: 320px;
+  border: 1px solid var(--grey);
+  border-radius: 25px;
+  text-align: center;
+  justify-content: center;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#login h1 {
+  text-align: center;
+  margin: 20px 0px 20px 0px;
+}
+
+#login input {
+  width: 80%;
+  padding: 8px;
+  margin: 20px 0px 10px 0px;
+  border: 1px solid var(--grey);
+  border-radius: 10px;
+}
+#login button {
+  margin: 20px 0px 0px 0px;
+  width: 50%;
+  color: white;
+  background-color: var(--colord);
+}
+
+#register {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  font-size: 13px;
+}
+
+#register p {
+  margin-right: 5px;
+  color: gray;
+}
+
+#register a {
+  color: gray;
+}
+
+/* Register.html */
+#login-register {
+  background-color: white;
+  width: 300px;
+  height: 405px;
+  border: 1px solid var(--grey);
+  border-radius: 25px;
+  text-align: center;
+  justify-content: center;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#login-register h1 {
+  text-align: center;
+  margin: 20px 0px 20px 0px;
+}
+
+#login-register input {
+  width: 80%;
+  padding: 8px;
+  margin: 15px 0px 10px 0px;
+  border: 1px solid var(--grey);
+  border-radius: 10px;
+}
+#login-register button {
+  margin: 10px 0px 0px 0px;
+  width: 50%;
+  color: white;
+  background-color: var(--colord);
+}
+
+#login-text {
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+  font-size: 13px;
+}
+
+#login-text p {
+  margin-right: 5px;
+  color: gray;
+}
+
+#login-text a {
+  color: gray;
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <link rel="stylesheet" href="/public/css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+  </head>
+  <body id="body">
+    <main>
+      <div id="login-wrapper">
+        <form id="login-register">
+          <h1>Sign up</h1>
+          <input id="username-reg" type="text" placeholder="Username" required />
+          <input id="email-reg" type="email" placeholder="Email" required />
+          <input id="password-reg" type="password" placeholder="Password" required onkeyup="check()" />
+          <input id="confirm-password" type="password" placeholder="confirm Password" required onkeyup="check()" />
+          <p id="message"></p>
+          <button id="register-button" type="submit">REGISTER</button>
+        </form>
+      </div>
+    </main>
+  </body>
+  <script language="javascript" type="text/javascript" src="/public/javascript/coderegister.js"></script>
+</html>

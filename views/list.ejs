@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expiry Date</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+  </head>
+  <body>
+    <header>
+      <h1 id="logo">Expiry Date</h1>
+      <div id="search-container">
+        <input id="search-input" type="text" placeholder="Search product" name="search" />
+        <div id="search-logo"><i class="fa-solid fa-magnifying-glass"></i></div>
+      </div>
+    </header>
+    <main>
+      <div id="grid-template">
+        <form id="row-wrapper">
+          <input id="file-selector" name="image" type="file" placeholder="Picture" accept=".jpg, .jpeg, .png" />
+
+          <input id="product-name" name="name" type="text" placeholder="Name" />
+
+          <input id="product-quantity" name="quantity" type="text" placeholder="Quantity" />
+
+          <input id="product-expirydate" name="expirydate" type="date" placeholder="Expiry-Date" />
+
+          <button id="delete-self-row"><i class="fa-solid fa-minus"></i></button>
+        </form>
+      </div>
+      <div id="new-row-div">
+        <button id="new-row"><i class="fa-solid fa-plus"></i></button>
+        <button id="delete-row"><i class="fa-solid fa-minus"></i></button>
+        <button id="save-button">Save</button>
+      </div>
+      <p id="attribut-text">If an element is not filled in, the whole line won't be saved to the database.</p>
+      <ul id="box-area">
+        <img src="img/apple.png" alt="" />
+        <img src="img/beer.png" alt="" />
+        <img src="img/carrot.png" alt="" />
+        <img src="img/cheese.png" alt="" />
+        <img src="img/croissant.png" alt="" />
+        <img src="img/drumstick.png" alt="" />
+        <img src="img/fish.png" alt="" />
+        <img src="img/hamburger.png" alt="" />
+        <img src="img/pepper.png" alt="" />
+        <img src="img/sausage.png" alt="" />
+        <img src="img/steak.png" alt="" />
+      </ul>
+    </main>
+  </body>
+  <script language="javascript" type="text/javascript" src="/javascript/codelist.js"></script>
+</html>

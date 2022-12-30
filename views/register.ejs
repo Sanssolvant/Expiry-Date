@@ -24,12 +24,15 @@
             name="conpassword"
             required
           />
-          <p id="message"></p>
+          <p id="message">matching</p>
           <button id="register-button" type="submit">REGISTER</button>
           <div id="login-text">
             <p>Back to</p>
             <a href="/index">Login</a>
           </div>
+          <% if (typeof ualex !== "undefined") { %>
+          <p id="message-error"><%= ualex %></p>
+          <% } %>
         </form>
       </div>
     </main>

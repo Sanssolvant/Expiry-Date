@@ -7,6 +7,7 @@ const deleteRow = document.getElementById('delete-row');
 const gridTemplate = document.getElementById('grid-template');
 const deleteSelfRow = document.getElementById('delete-self-row');
 const search = document.getElementById('search-input');
+const saveSuccess = document.getElementById('save-success');
 let search_term = '';
 
 window.onload = function () {
@@ -99,9 +100,13 @@ saveButton.addEventListener('click', e => {
     };
 
     if (dbElement.name === '' || dbElement.quantity === '' || dbElement.expirydate === '') {
-      console.log('Fehler');
+      saveSuccess.innerHTML = 'Save failed!';
+      saveSuccess.style.visibility = 'visible';
+      saveSuccess.style.color = 'red';
     } else {
-      console.log(dbElement);
+      saveSuccess.innerHTML = 'Save successful!';
+      saveSuccess.style.visibility = 'visible';
+      saveSuccess.style.color = 'green';
       insertTable(dbElement);
     }
   }

@@ -10,23 +10,24 @@
   </head>
   <body id="body">
     <main>
-      <% if (messages.error) { %> <%= messages.error %> <% } %>
       <div id="login-wrapper">
         <div id="infos">
           <h1>Expiry Date</h1>
           <h2>by Zinedine Tomasella</h2>
           <a href="www.ztomasella.com">www.ztomasella.com</a>
         </div>
-
         <form action="/index" id="login" method="post">
           <h1>Login</h1>
-          <input type="text" placeholder="Username" required name="username" />
-          <input type="password" placeholder="Password" required name="password" />
+          <input type="text" placeholder="Username" name="username" required />
+          <input type="password" placeholder="Password" name="password" required />
           <button type="submit">LOGIN</button>
           <div id="register">
             <p>Not a member?</p>
             <a href="/register">Register</a>
           </div>
+          <% if (messages.error) { %>
+          <p id="message-error"><%= messages.error %></p>
+          <% } %>
         </form>
       </div>
     </main>

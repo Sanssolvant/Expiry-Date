@@ -57,6 +57,12 @@ h2 {
   height: 100%;
 }
 
+#log-out {
+  color: gray;
+  margin: 0px 10px 0px 0px;
+  text-decoration: none;
+}
+
 #search-input {
   padding: 5px;
   width: 10vw;
@@ -130,6 +136,12 @@ button {
   margin-top: 15px;
 }
 
+#save-success {
+  margin: 5px 0px 0px 0px;
+  text-align: center;
+  visibility: hidden;
+  font-size: 16px;
+}
 /* list.html animations */
 #box-area {
   position: fixed;
@@ -266,7 +278,7 @@ button {
 #login {
   background-color: white;
   width: 300px;
-  height: 320px;
+  height: 290px;
   border: 1px solid var(--grey);
   border-radius: 25px;
   text-align: center;
@@ -276,18 +288,18 @@ button {
 
 #login h1 {
   text-align: center;
-  margin: 20px 0px 20px 0px;
+  margin: 20px 0px 25px 0px;
 }
 
 #login input {
   width: 80%;
   padding: 8px;
-  margin: 20px 0px 10px 0px;
+  margin: 0px 0px 20px 0px;
   border: 1px solid var(--grey);
   border-radius: 10px;
 }
 #login button {
-  margin: 20px 0px 0px 0px;
+  margin: 10px 0px 0px 0px;
   width: 50%;
   color: white;
   background-color: var(--colord);
@@ -296,7 +308,7 @@ button {
 #register {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 10px;
   font-size: 13px;
 }
 
@@ -309,11 +321,17 @@ button {
   color: gray;
 }
 
+#message-error {
+  margin: 5px 0px 0px 0px;
+  font-size: 13px;
+  color: red;
+}
+
 /* Register.html */
 #login-register {
   background-color: white;
   width: 300px;
-  height: 405px;
+  height: 420px;
   border: 1px solid var(--grey);
   border-radius: 25px;
   text-align: center;
@@ -323,13 +341,13 @@ button {
 
 #login-register h1 {
   text-align: center;
-  margin: 20px 0px 20px 0px;
+  margin: 20px 0px 25px 0px;
 }
 
 #login-register input {
   width: 80%;
   padding: 8px;
-  margin: 15px 0px 10px 0px;
+  margin: 0px 0px 20px 0px;
   border: 1px solid var(--grey);
   border-radius: 10px;
 }
@@ -340,10 +358,14 @@ button {
   background-color: var(--colord);
 }
 
+#message {
+  visibility: hidden;
+}
+
 #login-text {
   display: flex;
   justify-content: center;
-  margin-top: 5px;
+  margin-top: 10px;
   font-size: 13px;
 }
 

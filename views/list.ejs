@@ -19,21 +19,41 @@
     </header>
     <main>
       <div id="grid-template">
-        <form id="row-wrapper">
-          <input id="file-selector" name="image" type="file" placeholder="Picture" accept=".jpg, .jpeg, .png" />
+        <% dataList.forEach((element) => { %>
+        <form action="/deleterow" id="row-wrapper" method="post">
+          <input
+            id="file-selector"
+            name="image"
+            type="file"
+            placeholder="Picture"
+            accept=".jpg, .jpeg, .png"
+            onchange="inputPicture()"
+          />
 
-          <input id="product-name" name="name" type="text" placeholder="Name" />
+          <input id="product-name" name="name" type="text" placeholder="Name" value="<%=element.p_name%>" />
 
-          <input id="product-quantity" name="quantity" type="text" placeholder="Quantity" />
+          <input
+            id="product-quantity"
+            name="quantity"
+            type="text"
+            placeholder="Quantity"
+            value="<%=element.p_quantity%>"
+          />
 
-          <input id="product-expirydate" name="expirydate" type="date" placeholder="Expiry-Date" />
-
-          <button id="delete-self-row"><i class="fa-solid fa-minus"></i></button>
+          <input
+            id="product-expirydate"
+            name="expirydate"
+            type="date"
+            placeholder="Expiry-Date"
+            value="<%=element.p_expirydate%>"
+          />
+          <button id="delete-self-row" onclick="deleteSelfRow()"><i class="fa-solid fa-minus"></i></button>
         </form>
+        <% }) %>
       </div>
       <div id="new-row-div">
-        <button id="new-row"><i class="fa-solid fa-plus"></i></button>
-        <button id="delete-row"><i class="fa-solid fa-minus"></i></button>
+        <button id="new-row" onclick="newRow()"><i class="fa-solid fa-plus"></i></button>
+        <button id="delete-row" onclick="deleteRow()"><i class="fa-solid fa-minus"></i></button>
         <button id="save-button">Save</button>
       </div>
       <p id="attribut-text">If an element is not filled in, the whole line won't be saved to the database.</p>

@@ -8,10 +8,11 @@ const passport = require('passport');
 const flash = require('express-flash');
 const LocalStrategy = require('passport-local').Strategy;
 const app = express();
-const parseurl = require('parseurl');
 let session = require('express-session');
 let MySQLStore = require('express-mysql-session')(session);
 dotenv.config();
+
+const sessionName = 'sid';
 
 // Create Database connection
 const db = mysql.createConnection({
@@ -44,7 +45,9 @@ app.use(
     }),
     resave: false,
     saveUninitialized: false,
+    name: sessionName,
     cookie: {
+      secure: false,
       maxAge: 1000 * 60 * 60 * 24,
     },
   })
@@ -76,7 +79,7 @@ const verifyCallback = (username, password, done) => {
     if (results.length == 0) {
       return done(null, false);
     }
-    let user = { id: results[0].id, username: results[0].m_username, password: results[0].m_password };
+    let user = { id: results[0].id };
     try {
       if (await bcrypt.compare(password, results[0].m_password)) {
         return done(null, user);
@@ -122,7 +125,18 @@ app.get('/register', (req, res) => {
 });
 
 app.get('/list', (req, res) => {
-  res.render('list.ejs');
+  let data = JSON.parse(JSON.stringify(req.session));
+  let sql = `SELECT * FROM products WHERE m_id = ${data.passport.user}`;
+  db.query(sql, (err, result) => {
+    if (err) {
+      throw err;
+    }
+    let fromDB = JSON.parse(JSON.stringify(result));
+    console.log(fromDB);
+    res.render('list.ejs', {
+      dataList: fromDB,
+    });
+  });
 });
 
 app.get('/logout', (req, res) => {
@@ -130,6 +144,8 @@ app.get('/logout', (req, res) => {
     if (err) {
       return next(err);
     }
+    req.session.destroy();
+    res.clearCookie(sessionName);
     res.redirect('/index');
   });
 });
@@ -148,7 +164,6 @@ function userExists(req, res, next) {
     if (error) {
       console.log('Error');
     } else if (results.length > 0) {
-      //TODO SEND A MESSAGE THA AN USER ALREADY EXISTS
       res.render('register.ejs', {
         ualex: 'User already exists',
       });
@@ -184,22 +199,25 @@ app.post('/register', userExists, async (req, res) => {
   }
 });
 
-// Truncate products: Delets all rows and reset ID
-app.post('/truncate', (req, res) => {
-  let sql = 'TRUNCATE products';
+//Delete products
+app.post('/deleteproducts', (req, res) => {
+  let data = JSON.parse(JSON.stringify(req.session));
+  let sql = `DELETE FROM products WHERE m_id = ${data.passport.user}`;
   db.query(sql, (err, result) => {
     if (err) {
       throw err;
     }
     console.log(result);
-    res.send('Truncate successful');
+    res.send('Product delete successful...');
   });
 });
 
 // Insert products
 app.post('/insert', (req, res) => {
+  let data = JSON.parse(JSON.stringify(req.session));
   console.log(req.body); // The data in body of request
   let post = {
+    m_id: data.passport.user,
     p_image: req.body.image,
     p_name: req.body.name,
     p_quantity: req.body.quantity,
@@ -252,6 +270,18 @@ app.get('/selectmembers/:id', (req, res) => {
   });
 });
 
+// Truncate products: Delets all rows and reset ID
+app.post('/truncate', (req, res) => {
+  let sql = 'TRUNCATE products';
+  db.query(sql, (err, result) => {
+    if (err) {
+      throw err;
+    }
+    console.log(result);
+    res.send('Truncate successful');
+  });
+});
+
 // Create DB
 app.get('/createdb', (req, res) => {
   let sql = 'CREATE DATABASE produkte_ADate ';
@@ -288,18 +318,6 @@ app.get('/updateproduct/:id', (req, res) => {
     }
     console.log(result);
     res.send('Product update successful...');
-  });
-});
-
-//Delete post
-app.get('/deleteproduct/:id', (req, res) => {
-  let sql = `DELETE FROM products WHERE id = ${req.params.id}`;
-  db.query(sql, (err, result) => {
-    if (err) {
-      throw err;
-    }
-    console.log(result);
-    res.send('Product delete successful...');
   });
 });
 

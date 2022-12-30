@@ -27,33 +27,3 @@ let check = function () {
     registerbutton.disabled = true;
   }
 };
-
-// loginRegister.addEventListener('submit', e => {
-//   e.preventDefault();
-
-//   if (document.getElementById('password-reg').value == document.getElementById('confirm-password').value) {
-//     let registerForm = {
-//       username: username.value,
-//       email: email.value,
-//       password: password.value,
-//     };
-//     console.log(registerForm);
-//     insertTableMember(registerForm);
-//     username.value = '';
-//     email.value = '';
-//     password.value = '';
-//     confirm.value = '';
-//   } else {
-//     console.log('Register not successful');
-//   }
-// });
-
-// const insertTableMember = function (registerForm) {
-//   let xhr = new XMLHttpRequest();
-//   xhr.open('POST', '/insertMember');
-//   xhr.setRequestHeader('content-type', 'application/json');
-//   xhr.onload = function () {
-//     console.log(xhr.responseText);
-//   };
-//   xhr.send(JSON.stringify(registerForm));
-// };

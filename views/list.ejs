@@ -20,7 +20,7 @@
     <main>
       <div id="grid-template">
         <% dataList.forEach((element) => { %>
-        <form action="/deleterow" id="row-wrapper" method="post">
+        <form id="row-wrapper">
           <input
             id="file-selector"
             name="image"
@@ -47,7 +47,9 @@
             placeholder="Expiry-Date"
             value="<%=element.p_expirydate%>"
           />
-          <button id="delete-self-row" onclick="deleteSelfRow()"><i class="fa-solid fa-minus"></i></button>
+          <button id="delete-self-row" onclick="deleteSelfRow(this)" type="button">
+            <i class="fa-solid fa-minus"></i>
+          </button>
         </form>
         <% }) %>
       </div>

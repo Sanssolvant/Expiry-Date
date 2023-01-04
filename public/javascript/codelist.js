@@ -52,9 +52,8 @@ function newRow() {
   newInput5.placeholder = 'Expiry-Date';
   const newButton = document.createElement('button');
   newButton.id = 'delete-self-row';
-  newButton.addEventListener('click', function () {
-    this.parentElement.remove();
-  });
+  newButton.setAttribute('onclick', 'deleteSelfRow(this)');
+  newButton.type = 'button';
   const buttonMinus = document.createElement('i');
   buttonMinus.className = 'fa-solid fa-minus';
   gridTemplate.appendChild(rowWrapper);
@@ -67,12 +66,11 @@ function newRow() {
 }
 
 function deleteRow() {
-  console.log('clicked');
   gridTemplate.removeChild(gridTemplate.lastChild);
 }
 
-function deleteSelfRow() {
-  this.parentElement.remove();
+function deleteSelfRow(elem) {
+  elem.parentElement.remove();
 }
 
 saveButton.addEventListener('click', e => {
@@ -93,7 +91,7 @@ saveButton.addEventListener('click', e => {
     };
 
     if (dbElement.name === '' || dbElement.quantity === '' || dbElement.expirydate === '') {
-      saveSuccess.innerHTML = 'Save failed!';
+      saveSuccess.innerHTML = "Name, Quantity or Expiry-Date can't be empty.";
       saveSuccess.style.visibility = 'visible';
       saveSuccess.style.color = 'red';
     } else {

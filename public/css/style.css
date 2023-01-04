@@ -251,7 +251,7 @@ button {
   color: var(--colorlogo);
   font-size: 60px;
   margin: 0px 0px 15px 0px;
-  text-shadow: 2px 2px 2px var(--colorlogo);
+  text-shadow: 3px 2px 2px var(--colorlogo);
 }
 
 #infos h2 {

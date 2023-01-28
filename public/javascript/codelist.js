@@ -4,8 +4,22 @@ const saveButton = document.getElementById('save-button');
 const gridTemplate = document.getElementById('grid-template');
 const search = document.getElementById('search-input');
 const saveSuccess = document.getElementById('save-success');
+const dataName = document.getElementsByName('name');
+const dataQuantity = document.getElementsByName('quantity');
+const dataDate = document.getElementsByName('expirydate');
 let search_term = '';
 let output = '';
+
+// When the user scrolls the page, execute myFunction
+window.onscroll = function () {
+  let header = document.getElementById('header');
+  // let footer = document.getElementsById('footer');
+  let sticky = header.offsetTop;
+  if (window.pageYOffset >= sticky) {
+    header.classList.add('sticky');
+    // footer.classList.add('sticky');
+  }
+};
 
 function inputPicture() {
   const reader = new FileReader();
@@ -69,9 +83,23 @@ function deleteRow() {
   gridTemplate.removeChild(gridTemplate.lastChild);
 }
 
-function deleteSelfRow(elem) {
-  elem.parentElement.remove();
+function deleteSelfRow(e) {
+  e.parentElement.remove();
 }
+
+function showSort() {
+  document.getElementById('sort-dropdown-content').classList.toggle('show');
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function (event) {
+  if (!event.target.matches('#sort-button')) {
+    let myDropdown = document.getElementById('sort-dropdown-content');
+    if (myDropdown.classList.contains('show')) {
+      myDropdown.classList.remove('show');
+    }
+  }
+};
 
 saveButton.addEventListener('click', e => {
   let pImageList = document.getElementsByName('image');
@@ -125,11 +153,10 @@ const insertTable = function (dbElement) {
 const filterList = function () {
   const searchInput = document.getElementById('search-input');
   const filter = searchInput.value.toLowerCase();
-  const data = document.getElementsByName('name');
   let dataValue = [];
   let child;
-  for (let i = 0; i < data.length; i++) {
-    dataValue.push(data[i].value.toLowerCase());
+  for (let i = 0; i < dataName.length; i++) {
+    dataValue.push(dataName[i].value.toLowerCase());
   }
   dataValue.forEach(element => {
     child = gridTemplate.getElementsByTagName('form')[dataValue.indexOf(element)];

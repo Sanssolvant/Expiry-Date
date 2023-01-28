@@ -49,6 +49,7 @@ app.use(
     cookie: {
       secure: false,
       maxAge: 1000 * 60 * 60 * 24,
+      sameSite: 'lax',
     },
   })
 );
@@ -107,14 +108,6 @@ passport.deserializeUser(function (userId, done) {
   });
 });
 
-// function isAuth(req, res, next) {
-//   if (req.isAuthenticated()) {
-//     next();
-//   } else {
-//     res.redirect('/notAuthorized');
-//   }
-// }
-
 // API Routes
 app.get('/index', (req, res) => {
   res.render('index.ejs');
@@ -133,6 +126,90 @@ app.get('/list', (req, res) => {
     }
     let fromDB = JSON.parse(JSON.stringify(result));
     console.log(fromDB);
+    res.render('list.ejs', {
+      dataList: fromDB,
+    });
+  });
+});
+
+app.get('/sortproductup', (req, res) => {
+  let data = JSON.parse(JSON.stringify(req.session));
+  let sql = `SELECT * FROM products WHERE m_id = ${data.passport.user} ORDER BY p_name`;
+  db.query(sql, (err, result) => {
+    if (err) {
+      throw err;
+    }
+    let fromDB = JSON.parse(JSON.stringify(result));
+    res.render('list.ejs', {
+      dataList: fromDB,
+    });
+  });
+});
+
+app.get('/sortproductdown', (req, res) => {
+  let data = JSON.parse(JSON.stringify(req.session));
+  let sql = `SELECT * FROM products WHERE m_id = ${data.passport.user} ORDER BY p_name DESC`;
+  db.query(sql, (err, result) => {
+    if (err) {
+      throw err;
+    }
+    let fromDB = JSON.parse(JSON.stringify(result));
+    res.render('list.ejs', {
+      dataList: fromDB,
+    });
+  });
+});
+
+app.get('/sortquantitytup', (req, res) => {
+  let data = JSON.parse(JSON.stringify(req.session));
+  let sql = `SELECT * FROM products WHERE m_id = ${data.passport.user} ORDER BY p_quantity`;
+  db.query(sql, (err, result) => {
+    if (err) {
+      throw err;
+    }
+    let fromDB = JSON.parse(JSON.stringify(result));
+    res.render('list.ejs', {
+      dataList: fromDB,
+    });
+  });
+});
+
+app.get('/sortquantitydown', (req, res) => {
+  let data = JSON.parse(JSON.stringify(req.session));
+  let sql = `SELECT * FROM products WHERE m_id = ${data.passport.user} ORDER BY p_quantity DESC`;
+  db.query(sql, (err, result) => {
+    if (err) {
+      throw err;
+    }
+    let fromDB = JSON.parse(JSON.stringify(result));
+    res.render('list.ejs', {
+      dataList: fromDB,
+    });
+  });
+});
+
+app.get('/sortdateup', (req, res) => {
+  let data = JSON.parse(JSON.stringify(req.session));
+  let sql = `SELECT * FROM products WHERE m_id = ${data.passport.user} ORDER BY p_expirydate`;
+  db.query(sql, (err, result) => {
+    if (err) {
+      throw err;
+    }
+    let fromDB = JSON.parse(JSON.stringify(result));
+    res.render('list.ejs', {
+      dataList: fromDB,
+    });
+  });
+});
+
+app.get('/sortdatedown', (req, res) => {
+  let data = JSON.parse(JSON.stringify(req.session));
+  let sql = `SELECT * FROM products WHERE m_id = ${data.passport.user} ORDER BY p_expirydate DESC`;
+  db.query(sql, (err, result) => {
+    if (err) {
+      throw err;
+    }
+    let fromDB = JSON.parse(JSON.stringify(result));
     res.render('list.ejs', {
       dataList: fromDB,
     });
@@ -258,68 +335,68 @@ app.post('/insertMember', async (req, res) => {
   }
 });
 
-// Select single post
-app.get('/selectmembers/:id', (req, res) => {
-  let sql = `SELECT * FROM members WHERE id = ${req.params.id}`;
-  db.query(sql, (err, result) => {
-    if (err) {
-      throw err;
-    }
-    let data = JSON.parse(JSON.stringify(result));
-    console.log(data[0].m_email);
-  });
-});
+// // Select single post
+// app.get('/selectmembers/:id', (req, res) => {
+//   let sql = `SELECT * FROM members WHERE id = ${req.params.id}`;
+//   db.query(sql, (err, result) => {
+//     if (err) {
+//       throw err;
+//     }
+//     let data = JSON.parse(JSON.stringify(result));
+//     console.log(data[0].m_email);
+//   });
+// });
 
-// Truncate products: Delets all rows and reset ID
-app.post('/truncate', (req, res) => {
-  let sql = 'TRUNCATE products';
-  db.query(sql, (err, result) => {
-    if (err) {
-      throw err;
-    }
-    console.log(result);
-    res.send('Truncate successful');
-  });
-});
+// // Truncate products: Delets all rows and reset ID
+// app.post('/truncate', (req, res) => {
+//   let sql = 'TRUNCATE products';
+//   db.query(sql, (err, result) => {
+//     if (err) {
+//       throw err;
+//     }
+//     console.log(result);
+//     res.send('Truncate successful');
+//   });
+// });
 
-// Create DB
-app.get('/createdb', (req, res) => {
-  let sql = 'CREATE DATABASE produkte_ADate ';
-  db.query(sql, (err, result) => {
-    if (err) {
-      throw err;
-    }
-    console.log(result);
-    res.send('Database created...');
-  });
-});
+// // Create DB
+// app.get('/createdb', (req, res) => {
+//   let sql = 'CREATE DATABASE produkte_ADate ';
+//   db.query(sql, (err, result) => {
+//     if (err) {
+//       throw err;
+//     }
+//     console.log(result);
+//     res.send('Database created...');
+//   });
+// });
 
-// Create Table
-app.get('/createtable', (req, res) => {
-  let sql =
-    'CREATE TABLE products(id int AUTO_INCREMENT, p_image BLOB, p_name VARCHAR(255), p_quantity int, p_expirydate date, PRIMARY KEY (id))';
+// // Create Table
+// app.get('/createtable', (req, res) => {
+//   let sql =
+//     'CREATE TABLE products(id int AUTO_INCREMENT, p_image BLOB, p_name VARCHAR(255), p_quantity int, p_expirydate date, PRIMARY KEY (id))';
 
-  db.query(sql, (err, result) => {
-    if (err) {
-      throw err;
-    }
-    console.log(result);
-    res.send('Table created...');
-  });
-});
+//   db.query(sql, (err, result) => {
+//     if (err) {
+//       throw err;
+//     }
+//     console.log(result);
+//     res.send('Table created...');
+//   });
+// });
 
-// Update post
-app.get('/updateproduct/:id', (req, res) => {
-  let newName = 'Brot';
-  let sql = `UPDATE products SET p_name = '${newName}' WHERE id = ${req.params.id}`;
-  db.query(sql, (err, result) => {
-    if (err) {
-      throw err;
-    }
-    console.log(result);
-    res.send('Product update successful...');
-  });
-});
+// // Update post
+// app.get('/updateproduct/:id', (req, res) => {
+//   let newName = 'Brot';
+//   let sql = `UPDATE products SET p_name = '${newName}' WHERE id = ${req.params.id}`;
+//   db.query(sql, (err, result) => {
+//     if (err) {
+//       throw err;
+//     }
+//     console.log(result);
+//     res.send('Product update successful...');
+//   });
+// });
 
 app.listen(process.env.PORT, () => {
   console.log('Server started on port ' + process.env.PORT);

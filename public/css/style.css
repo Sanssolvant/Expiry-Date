@@ -1,10 +1,10 @@
 :root {
-  --colorh: #bad4d7;
-  --colorhd: #9fb5b9;
-  --colord: #85979a;
-  --colorb: #d4f2f6;
-  --colorlogo: #353c3d;
-  --grey: #808080; /*Border Color*/
+  --colorh: #bad4d7; /* Color + button */
+  --colorhd: #9fb5b9; /* Color - button */
+  --colord: #85979a; /* Color Save button */
+  --colorb: #d4f2f6; /* Color Background */
+  --colorlogo: #353c3d; /* Color Logo (Expiry Date) */
+  --grey: #808080; /*Border Color */
 }
 
 header {
@@ -13,8 +13,15 @@ header {
   justify-content: space-between;
 }
 
+.sticky {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 1;
+}
+
 body {
-  background-color: var(--colorb);
+  background-color: white;
   font-family: 'Montserrat', monospace;
 }
 
@@ -57,17 +64,86 @@ h2 {
   height: 100%;
 }
 
-#log-out {
-  color: gray;
-  margin: 0px 10px 0px 0px;
-  text-decoration: none;
+#sort-button {
+  border: none;
+  background: none;
+  margin-right: 15px;
+  padding: 0;
+  cursor: pointer;
 }
+
+#sort-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.sort-dropdown-content-class {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 120px;
+  list-style-type: none;
+  text-align: center;
+  left: -50px;
+  margin: 10px 0px 0px 0px;
+  border: 1px solid var(--grey);
+}
+
+.sort-dropdown-content-class p {
+  margin: 5px 0px 0px 0px;
+}
+
+#sort-div {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  text-align: left;
+  margin: 10px 0px 10px 10px;
+  height: 30px;
+}
+
+#sort-div label {
+  margin-left: 10px;
+}
+
+#column-arrow {
+  display: flex;
+  flex-direction: column;
+}
+
+#column-arrow a {
+  height: 10px;
+  width: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: black;
+}
+
+/* #column-arrow i {
+  height: 10px;
+  width: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
 
 #search-input {
   padding: 5px;
   width: 10vw;
   border: 1px solid var(--grey);
   border-radius: 10px;
+}
+
+.show {
+  display: block;
+}
+
+#log-out {
+  color: gray;
+  margin: 0px 10px 0px 0px;
+  text-decoration: none;
 }
 
 #row-wrapper {
@@ -82,9 +158,7 @@ h2 {
 
 #grid-template input,
 button {
-  border-color: var(--grey);
-  border-width: 2px;
-  border-style: solid;
+  border: 2px solid var(--grey);
   border-radius: 10px;
   padding: 5px;
 }
@@ -107,7 +181,9 @@ button {
   height: 30px;
   justify-content: center;
   align-items: center;
+  padding-top: 10px;
 }
+
 #new-row,
 #delete-row,
 #save-button {
@@ -376,4 +452,13 @@ button {
 
 #login-text a {
   color: gray;
+}
+
+#footer {
+  z-index: 1;
+  margin: 0;
+  padding: 0;
+  position: sticky;
+  bottom: 0;
+  background-color: white;
 }

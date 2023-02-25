@@ -10,46 +10,60 @@
   </head>
   <body>
     <header class="header-class" id="header">
-      <h1 id="logo">Expiry Date</h1>
-      <div id="search-container">
-        <div id="sort-dropdown">
-          <i class="fa-solid fa-sort fa-xl" onclick="showSort()" id="sort-button"></i>
+      <div id="headwrapper" class="headwrapper-class">
+        <h1 id="logo">Expiry Date</h1>
+        <div id="search-container">
+          <div id="sort-dropdown">
+            <i class="fa-solid fa-sort fa-xl" onclick="showSort()" id="sort-button"></i>
 
-          <div id="sort-dropdown-content" class="sort-dropdown-content-class">
-            <p><b>Sort by</b></p>
-            <div id="sort-div">
-              <div id="column-arrow">
-                <a class="fa-solid fa-sort-up" href="/sortproductup"></a>
-                <a class="fa-solid fa-sort-down" href="/sortproductdown"></a>
-                <!-- <i class="fa-solid fa-sort-up" onclick="sortProductUp()"></i>
+            <div id="sort-dropdown-content" class="sort-dropdown-content-class">
+              <p><b>Sort by</b></p>
+              <div id="sort-div">
+                <div id="column-arrow">
+                  <a class="fa-solid fa-sort-up" href="/sortproductup"></a>
+                  <a class="fa-solid fa-sort-down" href="/sortproductdown"></a>
+                  <!-- <i class="fa-solid fa-sort-up" onclick="sortProductUp()"></i>
                 <i class="fa-solid fa-sort-down" onclick="sortProductDown()"></i> -->
+                </div>
+                <label>product</label>
               </div>
-              <label>product</label>
-            </div>
-            <div id="sort-div">
-              <div id="column-arrow">
-                <a class="fa-solid fa-sort-up" href="/sortquantitytup"></a>
-                <a class="fa-solid fa-sort-down" href="/sortquantitydown"></a>
-                <!-- <i class="fa-solid fa-sort-up" onclick="sortQuantityUp()"></i>
+              <div id="sort-div">
+                <div id="column-arrow">
+                  <a class="fa-solid fa-sort-up" href="/sortquantitytup"></a>
+                  <a class="fa-solid fa-sort-down" href="/sortquantitydown"></a>
+                  <!-- <i class="fa-solid fa-sort-up" onclick="sortQuantityUp()"></i>
                 <i class="fa-solid fa-sort-down" onclick="sortQuantityDown()"></i> -->
+                </div>
+                <label>quantity</label>
               </div>
-              <label>quantity</label>
-            </div>
-            <div id="sort-div">
-              <div id="column-arrow">
-                <a class="fa-solid fa-sort-up" href="/sortdateup"></a>
-                <a class="fa-solid fa-sort-down" href="/sortdatedown"></a>
-                <!-- <i class="fa-solid fa-sort-up" onclick="sortDateUp()"></i>
+              <div id="sort-div">
+                <div id="column-arrow">
+                  <a class="fa-solid fa-sort-up" href="/sortdateup"></a>
+                  <a class="fa-solid fa-sort-down" href="/sortdatedown"></a>
+                  <!-- <i class="fa-solid fa-sort-up" onclick="sortDateUp()"></i>
                 <i class="fa-solid fa-sort-down" onclick="sortDateDown()"></i> -->
+                </div>
+                <label>date</label>
               </div>
-              <label>date</label>
             </div>
           </div>
+          <input id="search-input" type="text" placeholder="Search product" name="search" />
+          <div id="search-logo"><i class="fa-solid fa-magnifying-glass"></i></div>
+          <a id="log-out" href="/logout">Logout</a>
         </div>
-        <input id="search-input" type="text" placeholder="Search product" name="search" />
-        <div id="search-logo"><i class="fa-solid fa-magnifying-glass"></i></div>
-        <a id="log-out" href="/logout">Logout</a>
       </div>
+      <!--
+       <div id="title-beschriftung">
+        <div id="beschriftung-div1">
+          <h4>Photo</h4>
+          <h4>Name</h4>
+        </div>
+        <div id="beschriftung-div2">
+          <h4>Quantity</h4>
+          <h4 id="ed4">Expiry-Date</h4>
+        </div>
+      </div>
+      -->
     </header>
     <main>
       <div id="grid-template">

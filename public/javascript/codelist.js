@@ -158,11 +158,15 @@ const filterList = function () {
   for (let i = 0; i < dataName.length; i++) {
     dataValue.push(dataName[i].value.toLowerCase());
   }
+  console.log(dataValue);
   dataValue.forEach(element => {
     child = gridTemplate.getElementsByTagName('form')[dataValue.indexOf(element)];
     if (element.includes(filter)) {
       child.style.display = '';
     } else {
+      child.style.display = 'none';
+    }
+    if (element === '') {
       child.style.display = 'none';
     }
   });

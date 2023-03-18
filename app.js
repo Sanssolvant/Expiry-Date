@@ -7,9 +7,11 @@ const cors = require('cors');
 const passport = require('passport');
 const flash = require('express-flash');
 const LocalStrategy = require('passport-local').Strategy;
+const moment = require('moment');
 const app = express();
 let session = require('express-session');
 let MySQLStore = require('express-mysql-session')(session);
+let date;
 dotenv.config();
 
 const sessionName = 'sid';
@@ -126,8 +128,10 @@ app.get('/list', (req, res) => {
     }
     let fromDB = JSON.parse(JSON.stringify(result));
     console.log(fromDB);
+    date = moment().format('YYYY-MM-DD');
     res.render('list.ejs', {
       dataList: fromDB,
+      date: date,
     });
   });
 });
@@ -140,7 +144,7 @@ app.get('/sortproductup', (req, res) => {
       throw err;
     }
     let fromDB = JSON.parse(JSON.stringify(result));
-    res.render('list.ejs', {
+    res.render('listwithoutausgabe.ejs', {
       dataList: fromDB,
     });
   });
@@ -154,7 +158,7 @@ app.get('/sortproductdown', (req, res) => {
       throw err;
     }
     let fromDB = JSON.parse(JSON.stringify(result));
-    res.render('list.ejs', {
+    res.render('listwithoutausgabe.ejs', {
       dataList: fromDB,
     });
   });
@@ -168,7 +172,7 @@ app.get('/sortquantitytup', (req, res) => {
       throw err;
     }
     let fromDB = JSON.parse(JSON.stringify(result));
-    res.render('list.ejs', {
+    res.render('listwithoutausgabe.ejs', {
       dataList: fromDB,
     });
   });
@@ -182,7 +186,7 @@ app.get('/sortquantitydown', (req, res) => {
       throw err;
     }
     let fromDB = JSON.parse(JSON.stringify(result));
-    res.render('list.ejs', {
+    res.render('listwithoutausgabe.ejs', {
       dataList: fromDB,
     });
   });
@@ -196,7 +200,7 @@ app.get('/sortdateup', (req, res) => {
       throw err;
     }
     let fromDB = JSON.parse(JSON.stringify(result));
-    res.render('list.ejs', {
+    res.render('listwithoutausgabe.ejs', {
       dataList: fromDB,
     });
   });
@@ -210,7 +214,7 @@ app.get('/sortdatedown', (req, res) => {
       throw err;
     }
     let fromDB = JSON.parse(JSON.stringify(result));
-    res.render('list.ejs', {
+    res.render('listwithoutausgabe.ejs', {
       dataList: fromDB,
     });
   });
@@ -242,7 +246,7 @@ function userExists(req, res, next) {
       console.log('Error');
     } else if (results.length > 0) {
       res.render('register.ejs', {
-        ualex: 'User already exists',
+        uAlEx: 'User already exists',
       });
     } else {
       next();
@@ -265,7 +269,6 @@ app.post('/register', userExists, async (req, res) => {
         if (err) {
           throw err;
         }
-        console.log(result);
         res.redirect('/index');
       });
     } catch {
@@ -295,9 +298,10 @@ app.post('/insert', (req, res) => {
   console.log(req.body); // The data in body of request
   let post = {
     m_id: data.passport.user,
-    p_image: req.body.image,
+    /*     p_photo: req.body.photo, */
     p_name: req.body.name,
     p_quantity: req.body.quantity,
+    p_measure: req.body.measure,
     p_expirydate: req.body.expirydate,
   };
   let sql = 'INSERT INTO products SET ?';
@@ -333,6 +337,10 @@ app.post('/insertMember', async (req, res) => {
     res.redirect('/register');
     res.status(500).send();
   }
+});
+
+app.listen(process.env.PORT, () => {
+  console.log('Server started on port ' + process.env.PORT);
 });
 
 // // Select single post
@@ -397,7 +405,3 @@ app.post('/insertMember', async (req, res) => {
 //     res.send('Product update successful...');
 //   });
 // });
-
-app.listen(process.env.PORT, () => {
-  console.log('Server started on port ' + process.env.PORT);
-});

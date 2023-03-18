@@ -126,7 +126,6 @@ function saveList() {
   let pExpirydateList = document.getElementsByName('expirydate');
   let pMeasureList = document.getElementsByName('measure');
   let pPhotoList = document.getElementsByTagName('canvas');
-  const blobArray = [];
 
   /* let test = pPhotoList[0].toBlob(function (blob) {
     blobArray.push(blob);

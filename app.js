@@ -18,10 +18,10 @@ const sessionName = 'sid';
 
 // Create Database connection
 const db = mysql.createConnection({
-  host: 'http://mysql-ldan:3306',
-  user: process.env.MYSQL_USER,
-  password: process.env.MYSQL_PASSWORD,
-  database: process.env.MYSQL_DATABASE,
+  host: 'localhost',
+  user: process.env.MYSQLUSER,
+  password: process.env.MYSQLPASSWORD,
+  database: process.env.USEDATABASE,
 });
 
 db.connect(err => {

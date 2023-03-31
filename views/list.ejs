@@ -156,7 +156,7 @@
         <% } %> <% if (day < 0) { %>
         <p>
           The product <span><%= element.p_name %></span> exceeded the minimum expiration date since
-          <span><%= day %> </span> days.
+          <span><%= Math.abs(day) %> </span> days.
         </p>
         <% } %> <% }) %>
         <div id="close-ausgabe-differenz" onclick="closeAusgabe()">

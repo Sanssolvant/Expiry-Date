@@ -17,7 +17,7 @@ dotenv.config();
 const sessionName = 'sid';
 
 // Create Database connection
-const db = mysql.createConnection({
+/* const db = mysql.createConnection({
   host: '127.0.0.1',
   user: process.env.MYSQLUSER,
   password: process.env.MYSQLPASSWORD,
@@ -29,7 +29,7 @@ db.connect(err => {
     throw err;
   }
   console.log('MySql Connected...');
-});
+}); */
 
 // Static Files
 // Api Middleware
